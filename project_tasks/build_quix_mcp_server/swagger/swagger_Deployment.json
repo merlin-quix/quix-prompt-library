@@ -1,0 +1,2014 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Portal API - Deployment",
+    "version": "2.0"
+  },
+  "paths": {
+    "/deployments/{deploymentId}": {
+      "patch": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Patch an existing deployment",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The patch request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentPatchRequestV2"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentPatchRequestV2"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentPatchRequestV2"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentPatchRequestV2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Delete a specific deployment for a project",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get a specific deployment by its id",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deployments": {
+      "post": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Create a new deployment",
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The create request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentCreateRequestV2"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentCreateRequestV2"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentCreateRequestV2"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentCreateRequestV2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get all deployments in the workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "query",
+            "description": "Id of the workspace the project belongs to",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "query",
+            "description": "Optional. Name of the project the deployments belongs to",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Deployment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/workspaces/{workspaceId}/deployments": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get all deployments in the workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "Id of the workspace the project belongs to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "query",
+            "description": "Optional. Name of the project the deployments belongs to",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Deployment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/stop": {
+      "put": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Stop a deployment.",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bypassDescriptor",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/update/cancel": {
+      "put": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Cancels a deployment update.",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/update/retry": {
+      "put": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Retries a deployment update.",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/deployments/secrets": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Gets deployments secrets keys",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/deployments/update": {
+      "post": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Updates workspace deployments",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "deployments ids, if not specified the entire workspace",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/start": {
+      "put": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Start a deployment.",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bypassDescriptor",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/buildlogs": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get the build logs of a Deployment",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/buildlogs/stream": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get the continuous build logs of a Deployment with a streaming HTTP call",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/logs/history/stats": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Gets the historical log stats for a given deployment",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "The deployment identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streams",
+            "in": "query",
+            "description": "The number of log stream stats to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start date in nanoseconds since epoch of logs contained in the log streams",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end data in nanoseconds since epoch of logs contained in the log streams",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "replicaId",
+            "in": "query",
+            "description": "The replica identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentHistoricalLogStatsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/logs/history/filter": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get the history of logs of a Deployment by date range",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "The deployment identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instanceId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replicaId",
+            "in": "query",
+            "description": "The replica identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start date in nanoseconds since epoch of logs contained in the log streams",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end data in nanoseconds since epoch of logs contained in the log streams",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "The direction of the logs. Defaults to forward (oldest to newest logs)",
+            "schema": {
+              "$ref": "#/components/schemas/LogDirection"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of max logs to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1000
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentHistoricalLogResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/logs/history/download": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get the history of logs of a Deployment by date range",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "The deployment identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instanceId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replicaId",
+            "in": "query",
+            "description": "The replica identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeTimestamp",
+            "in": "query",
+            "description": "Whether to include timestamp",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "start time",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "end time",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/replicas": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get the replicas of a Deployment",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/runs": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Gets deployment historical runs",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentRun"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentRun"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeploymentRun"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/runs/{runId}/logs": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get a deployment run logs",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "The deployment identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "deployment run id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/logs/current": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get the current logs of a Deployment",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replicaId",
+            "in": "query",
+            "description": "replica id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/logs/all": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get the logs of a Deployment",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replicaId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/logs/page": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get the logs of a Deployment by Page",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "Id of the deployment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "linesPerPage",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "replicaId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/deployments/{deploymentId}/logs/stream": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Get the continuous logs of a Deployment with a streaming HTTP call",
+        "parameters": [
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replicaId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PortMapping": {
+        "type": "object",
+        "properties": {
+          "port": {
+            "type": "integer",
+            "description": "Port to map",
+            "format": "int32"
+          },
+          "targetPort": {
+            "type": "integer",
+            "description": "Target port",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Port mapping"
+      },
+      "DeploymentRun": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of run",
+            "format": "uuid"
+          },
+          "deploymentId": {
+            "type": "string",
+            "description": "Deployment Id",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Start Time",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "End Time",
+            "format": "date-time",
+            "nullable": true
+          },
+          "exitCode": {
+            "type": "integer",
+            "description": "Exit Code",
+            "format": "int32",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Message",
+            "nullable": true
+          },
+          "podName": {
+            "type": "string",
+            "description": "Pod Name",
+            "nullable": true
+          },
+          "instanceId": {
+            "type": "string",
+            "description": "Pod instance Id",
+            "nullable": true
+          },
+          "replicaId": {
+            "type": "string",
+            "description": "Replica Id",
+            "nullable": true
+          },
+          "totalLogLinesEstimated": {
+            "type": "integer",
+            "description": "Total log lines estimated",
+            "format": "int64",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason",
+            "nullable": true
+          },
+          "currentRun": {
+            "type": "boolean",
+            "description": "True if this is the current active run"
+          },
+          "logsDownloadUrl": {
+            "type": "string",
+            "description": "Logs download url",
+            "format": "uri",
+            "nullable": true
+          },
+          "logsStored": {
+            "type": "boolean",
+            "description": "True if logs are stored"
+          },
+          "totalLogSizeEstimated": {
+            "type": "integer",
+            "description": "Total log size estimated in bytes",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentType": {
+        "enum": [
+          "Service",
+          "Job"
+        ],
+        "type": "string",
+        "description": "Type of deployment."
+      },
+      "DeploymentVariable": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the Environment Variable",
+            "nullable": true
+          },
+          "inputType": {
+            "$ref": "#/components/schemas/VariableInputType"
+          },
+          "multiline": {
+            "type": "boolean",
+            "description": "True if block is multiline",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the variable",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the variable is required to run the deployment"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value of the variable\r\nin case it's a secret, it's the secret key",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represent one variable of a Deployment"
+      },
+      "DeploymentGitReferenceType": {
+        "enum": [
+          "Commit",
+          "Tag",
+          "Any"
+        ],
+        "type": "string",
+        "description": "Enum that represent a Git Reference type of Quix.Portal.Api.Contract.Deployment."
+      },
+      "ScratchpadDeploymentInfo": {
+        "type": "object",
+        "properties": {
+          "isLocked": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VariableInputType": {
+        "enum": [
+          "Topic",
+          "FreeText",
+          "HiddenText",
+          "InputTopic",
+          "OutputTopic",
+          "Secret"
+        ],
+        "type": "string",
+        "description": "Input Type of a variable"
+      },
+      "DeploymentNetwork": {
+        "type": "object",
+        "properties": {
+          "serviceName": {
+            "type": "string",
+            "description": "Service Name",
+            "nullable": true
+          },
+          "ports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PortMapping"
+            },
+            "description": "Ports to map",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Network"
+      },
+      "DeploymentHistoricalLogResponse": {
+        "type": "object",
+        "properties": {
+          "instanceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "replicaId": {
+            "type": "string",
+            "nullable": true
+          },
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentHistoricalLogEntry"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentHistoricalLogEntry": {
+        "type": "object",
+        "properties": {
+          "log": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceUserAuditInfo": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "User ID",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "Email",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First Name",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last Name",
+            "nullable": true
+          },
+          "dateTime": {
+            "type": "string",
+            "description": "Date when the resource was created/updated at",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "User Basic Info"
+      },
+      "DeploymentStatus": {
+        "enum": [
+          "QueuedForBuild",
+          "Building",
+          "Deleting",
+          "BuildFailed",
+          "BuildSuccessful",
+          "QueuedForDeployment",
+          "Deploying",
+          "Starting",
+          "DeploymentFailed",
+          "Running",
+          "Stopping",
+          "RuntimeError",
+          "Completed",
+          "Stopped"
+        ],
+        "type": "string",
+        "description": "Enum that represent status of Quix.Portal.Api.Contract.Deployment."
+      },
+      "DeploymentCreateRequestV2": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "Id of the workspace the deployment belongs to",
+            "nullable": true
+          },
+          "applicationId": {
+            "type": "string",
+            "description": "Id of the application",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "User defined deployment name.",
+            "nullable": true
+          },
+          "replicas": {
+            "type": "integer",
+            "description": "Number of pods in parallel.",
+            "format": "int32"
+          },
+          "cpuMillicores": {
+            "type": "integer",
+            "description": "Maximum CPU millicores reserved for this model.",
+            "format": "int32"
+          },
+          "memoryInMb": {
+            "type": "integer",
+            "description": "Maximum memory reserved for this model.",
+            "format": "int32"
+          },
+          "publicAccess": {
+            "type": "boolean",
+            "description": "Whether the service has an accessible url publicly."
+          },
+          "urlPrefix": {
+            "type": "string",
+            "description": "Prefix of the public url.\r\nIt has to be unique inside the workspace.",
+            "nullable": true
+          },
+          "stateEnabled": {
+            "type": "boolean",
+            "description": "Whether the service has state feature enabled."
+          },
+          "stateSize": {
+            "type": "integer",
+            "description": "State size in GB",
+            "format": "int32"
+          },
+          "gitReference": {
+            "type": "string",
+            "description": "The git reference to deploy",
+            "nullable": true
+          },
+          "gitReferenceType": {
+            "$ref": "#/components/schemas/DeploymentGitReferenceType"
+          },
+          "deploymentType": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DeploymentVariable"
+            },
+            "description": "Variables for this deployment. Optional. Leave null to not update. Empty dictionary to clear existing.",
+            "nullable": true
+          },
+          "autoStart": {
+            "type": "boolean",
+            "description": "Determines if the deployment automatically starts upon creation. Defaults to true"
+          },
+          "useLatest": {
+            "type": "boolean",
+            "description": "If set to true the platform will use latest version for the deployment"
+          },
+          "imageUri": {
+            "type": "string",
+            "description": "Used when deploying directly an image",
+            "nullable": true
+          },
+          "network": {
+            "$ref": "#/components/schemas/DeploymentNetwork"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Model to create a new deployment"
+      },
+      "LogDirection": {
+        "enum": [
+          "Forward",
+          "Backward"
+        ],
+        "type": "string"
+      },
+      "DeploymentUpdateStatus": {
+        "enum": [
+          "None",
+          "QueuedForBuild",
+          "Building",
+          "BuildFailed",
+          "BuildSuccessful",
+          "QueuedForDeployment",
+          "Deploying",
+          "DeploymentFailed"
+        ],
+        "type": "string",
+        "description": "Enum that represent the Update status of a Quix.Portal.Api.Contract.Deployment."
+      },
+      "Deployment": {
+        "type": "object",
+        "properties": {
+          "deploymentId": {
+            "type": "string",
+            "description": "The unique identifier of the deployment",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "User defined deployment name.",
+            "nullable": true
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "Parent workspace ID.",
+            "nullable": true
+          },
+          "replicas": {
+            "type": "integer",
+            "description": "Number of pods in parallel.",
+            "format": "int32"
+          },
+          "cpuMillicores": {
+            "type": "integer",
+            "description": "Maximum CPU millicores reserved for this model.",
+            "format": "int32"
+          },
+          "memoryInMb": {
+            "type": "integer",
+            "description": "Maximum memory reserved for this model.",
+            "format": "int32"
+          },
+          "publicAccess": {
+            "type": "boolean",
+            "description": "Whether the service has an accessible url publicly."
+          },
+          "urlPrefix": {
+            "type": "string",
+            "description": "Prefix of the public url.\r\nIt has to be unique inside the workspace.",
+            "nullable": true
+          },
+          "stateEnabled": {
+            "type": "boolean",
+            "description": "Whether the service has state feature enabled."
+          },
+          "stateSize": {
+            "type": "integer",
+            "description": "State size in GB",
+            "format": "int32"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeploymentStatus"
+          },
+          "statusReason": {
+            "type": "string",
+            "description": "Brief reason about the Status of the deployment",
+            "nullable": true
+          },
+          "restartCount": {
+            "type": "integer",
+            "description": "The number of times the deployment has been restarted",
+            "format": "int32"
+          },
+          "timeOfDeployment": {
+            "type": "string",
+            "description": "Time when pod was successfully deployed to K8.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "Time at which the deployment was last (re-)started",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deploymentType": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DeploymentVariable"
+            },
+            "description": "Variables for this deployment.",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Time the deployment was created at",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Time the deployment was updated at",
+            "format": "date-time"
+          },
+          "gitReference": {
+            "type": "string",
+            "description": "Git reference (commit or tag).",
+            "nullable": true
+          },
+          "gitReferenceType": {
+            "$ref": "#/components/schemas/DeploymentGitReferenceType"
+          },
+          "buildId": {
+            "type": "string",
+            "description": "The id of the build last used for the deployment. Null if never deployed before.",
+            "nullable": true
+          },
+          "updateStatus": {
+            "$ref": "#/components/schemas/DeploymentUpdateStatus"
+          },
+          "updateBuildId": {
+            "type": "string",
+            "description": "The build id for the Update process. Can be null.",
+            "nullable": true
+          },
+          "libraryItemId": {
+            "type": "string",
+            "description": "The library item id the deployment was created from. This can be null, if it was not created from a library item.",
+            "nullable": true
+          },
+          "libraryItemCommitReference": {
+            "type": "string",
+            "description": "The library item's last change commit the deployment was created from. This can be null, if it was not created from a library item.\r\nOnly useful with Quix.Portal.Api.Contract.Deployment.LibraryItemId",
+            "nullable": true
+          },
+          "applicationId": {
+            "type": "string",
+            "description": "The id of the application the deployment is for",
+            "nullable": true
+          },
+          "applicationName": {
+            "type": "string",
+            "description": "The name of the application the deployment belongs to",
+            "nullable": true
+          },
+          "usingLibraryItemBuild": {
+            "type": "boolean",
+            "description": "Flag indicating that this is a deployment created from a library item build and saved as application, too,\r\nbut as the application was not modified, it is using the same build than the library item."
+          },
+          "useLatest": {
+            "type": "boolean",
+            "description": "If set to true the platform will use latest version for the deployment"
+          },
+          "latestVersion": {
+            "type": "string",
+            "description": "Latest version when KeepLatestVersion is set to true",
+            "nullable": true
+          },
+          "latestOutOfSync": {
+            "type": "boolean",
+            "description": "True if latest version is out of sync with the current deployment",
+            "readOnly": true
+          },
+          "applicationIsMissing": {
+            "type": "boolean",
+            "description": "True if application is missing in the latest"
+          },
+          "imageUri": {
+            "type": "string",
+            "description": "Used when deploying directly an image",
+            "nullable": true
+          },
+          "network": {
+            "$ref": "#/components/schemas/DeploymentNetwork"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/ResourceUserAuditInfo"
+          },
+          "updatedBy": {
+            "$ref": "#/components/schemas/ResourceUserAuditInfo"
+          },
+          "scratchpadInfo": {
+            "$ref": "#/components/schemas/ScratchpadDeploymentInfo"
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Deployment exists only in the database (not provisioned).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represent one deployed service or a job in Quix compute environment."
+      },
+      "DeploymentPatchRequestV2": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The new user defined deployment name. Optional. Leave null to not update",
+            "nullable": true
+          },
+          "replicas": {
+            "type": "integer",
+            "description": "New number of pods to run in parallel. Optional. Leave null to not update",
+            "format": "int32",
+            "nullable": true
+          },
+          "cpuMillicores": {
+            "type": "integer",
+            "description": "New maximum CPU millicores reserved for this model. Optional. Leave null to not update",
+            "format": "int32",
+            "nullable": true
+          },
+          "memoryInMb": {
+            "type": "integer",
+            "description": "New maximum memory reserved for this model. Optional. Leave null to not update",
+            "format": "int32",
+            "nullable": true
+          },
+          "publicAccess": {
+            "type": "boolean",
+            "description": "New value deciding whether the service has an accessible url publicly or not. Optional. Leave null to not update",
+            "nullable": true
+          },
+          "urlPrefix": {
+            "type": "string",
+            "description": "New prefix of the public url. Optional. Leave null to not update. If PublicAccess is false gets cleared.",
+            "nullable": true
+          },
+          "stateEnabled": {
+            "type": "boolean",
+            "description": "Whether the service has state feature enabled. Optional. Leave null to not update",
+            "nullable": true
+          },
+          "stateSize": {
+            "type": "integer",
+            "description": "State size in GB. Optional. Leave null to not update",
+            "format": "int32",
+            "nullable": true
+          },
+          "gitReference": {
+            "type": "string",
+            "description": "The git reference to deploy. Optional. Leave null to not update",
+            "nullable": true
+          },
+          "gitReferenceType": {
+            "$ref": "#/components/schemas/DeploymentGitReferenceType"
+          },
+          "deploymentType": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DeploymentVariable"
+            },
+            "description": "Variables for this deployment. Optional. Leave null to not update. Empty dictionary to clear existing.",
+            "nullable": true
+          },
+          "useLatest": {
+            "type": "boolean",
+            "description": "If set to true the platform will use latest version for the deployment",
+            "nullable": true
+          },
+          "imageUri": {
+            "type": "string",
+            "description": "Used when deploying directly an image",
+            "nullable": true
+          },
+          "network": {
+            "$ref": "#/components/schemas/DeploymentNetwork"
+          },
+          "disableNetwork": {
+            "type": "boolean",
+            "description": "If true it disables network access to the deployment"
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Deployment exists only in the database (not provisioned).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Model to update existing deployment."
+      },
+      "DeploymentHistoricalLogStatsResponse": {
+        "type": "object",
+        "properties": {
+          "instanceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "replicaId": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstTimestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lastTimestamp": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

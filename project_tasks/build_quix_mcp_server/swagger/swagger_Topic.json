@@ -1,0 +1,1237 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Portal API - Topic",
+    "version": "2.0"
+  },
+  "paths": {
+    "/{workspaceId}/topics": {
+      "post": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Create a new topic in the specified workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The creation request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopicCreateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopicCreateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopicCreateRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/TopicCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Get all topics from the specified workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Topic"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Topic"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Topic"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/topics/{topicName}": {
+      "delete": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Delete a topic from the specified workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "topicName",
+            "in": "path",
+            "description": "The topic to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Patch a topic from the specified workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "topicName",
+            "in": "path",
+            "description": "The topic name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The parameters to be modified",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopicPatchRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopicPatchRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopicPatchRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/TopicPatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Get a topic from the specified workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "topicName",
+            "in": "path",
+            "description": "The topic name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/topics/{topicName}/clean": {
+      "post": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Clean the contents of a topic from the specified workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "topicName",
+            "in": "path",
+            "description": "The topic to clean",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/topics/config/default": {
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Gets topic default configuration for a given workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopicConfiguration"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopicConfiguration"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopicConfiguration"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/topics": {
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Search topics",
+        "parameters": [
+          {
+            "name": "DataTier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "WorkspaceId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "RepositoryId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Linkable",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Linked",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Locked",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "IsSdk",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Topic"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Topic"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Topic"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/topics/all-linkable": {
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Get all linkable topics from the specified workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Topic"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Topic"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Topic"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/topics/external/import": {
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Get all available external topics",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/{workspaceId}/topics/external/import/refresh": {
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Refresh imported topics dry run",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshImportedTopicsResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshImportedTopicsResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshImportedTopicsResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Refresh imported topics",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshImportedTopicsResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshImportedTopicsResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshImportedTopicsResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/topics/metrics/all": {
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Get the metrics of all topics from the specified workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopicMetrics"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopicMetrics"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopicMetrics"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/topics/{topicName}/clear-error": {
+      "post": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Tries to remove the error state of the topic if it's in an error state",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "topicName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChangedTopic": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the topic",
+            "nullable": true
+          },
+          "currentConfig": {
+            "$ref": "#/components/schemas/TopicConfiguration"
+          },
+          "targetConfig": {
+            "$ref": "#/components/schemas/TopicConfiguration"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshImportedTopicsResult": {
+        "type": "object",
+        "properties": {
+          "changedTopics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChangedTopic"
+            },
+            "nullable": true
+          },
+          "deletedTopics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Topic"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TopicCreateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the topic",
+            "nullable": true
+          },
+          "externalSourceName": {
+            "type": "string",
+            "description": "The name of the External Source",
+            "nullable": true
+          },
+          "externalDestinationName": {
+            "type": "string",
+            "description": "The name of the External Destination",
+            "nullable": true
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/TopicCreateConfigurationRequest"
+          },
+          "persisted": {
+            "type": "boolean",
+            "description": "Persist the topic on creation",
+            "nullable": true,
+            "deprecated": true
+          },
+          "dataTierName": {
+            "type": "string",
+            "description": "Data tier name",
+            "nullable": true
+          },
+          "unmanaged": {
+            "type": "boolean",
+            "description": "True if is not managed by Quix"
+          },
+          "linkedTopic": {
+            "$ref": "#/components/schemas/LinkedTopicRequest"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a topic create request"
+      },
+      "TopicPatchRequest": {
+        "type": "object",
+        "properties": {
+          "persisted": {
+            "type": "boolean",
+            "description": "Whether the topic should be flagged for persistence (Optional: Null value means not modify this property)",
+            "nullable": true,
+            "deprecated": true
+          },
+          "externalSourceName": {
+            "type": "string",
+            "description": "The name of the External Source (Optional: Null value means not modify this property)",
+            "nullable": true
+          },
+          "externalDestinationName": {
+            "type": "string",
+            "description": "The name of the External Destination (Optional: Null value means not modify this property)",
+            "nullable": true
+          },
+          "partitions": {
+            "type": "integer",
+            "description": "Partitions of the topic. Must be greater than previous value.\r\n(Optional: Null value means not modify this property)",
+            "format": "int32",
+            "nullable": true
+          },
+          "retentionInMinutes": {
+            "type": "integer",
+            "description": "Time in minutes the message broker will retain the messages in the topic\r\n(Optional: Null value means not modify this property)",
+            "format": "int32",
+            "nullable": true
+          },
+          "retentionInBytes": {
+            "type": "integer",
+            "description": "Number of bytes maximum the message broker will retain messages in the topic\r\n(Optional: Null value means not modify this property)",
+            "format": "int64",
+            "nullable": true
+          },
+          "cleanupPolicy": {
+            "$ref": "#/components/schemas/TopicCleanupPolicy"
+          },
+          "dataTierName": {
+            "type": "string",
+            "description": "Data tier name",
+            "nullable": true
+          },
+          "unsetDataTier": {
+            "type": "boolean",
+            "description": "True if it should unset the data tier"
+          },
+          "unlinkTopic": {
+            "type": "boolean"
+          },
+          "linkedTopic": {
+            "$ref": "#/components/schemas/LinkedTopicRequest"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a topic update request"
+      },
+      "LinkedTopicRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace identifier where the linked topic is located",
+            "nullable": true
+          },
+          "topicName": {
+            "type": "string",
+            "description": "The name of the linked topic",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a linked topic request, including workspace ID and topic name"
+      },
+      "TopicMetrics": {
+        "type": "object",
+        "properties": {
+          "topicId": {
+            "type": "string",
+            "description": "Topic Id measured",
+            "nullable": true
+          },
+          "bytesInPerSecond": {
+            "type": "integer",
+            "description": "Bytes In per Second",
+            "format": "int64"
+          },
+          "bytesOutPerSecond": {
+            "type": "integer",
+            "description": "Bytes Out per Second",
+            "format": "int64"
+          },
+          "valuesPersistedPerSecond": {
+            "type": "integer",
+            "description": "Number of values per second persisted in the topic",
+            "format": "int32"
+          },
+          "streamsPersisted": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Streams being persisted in the topic\r\nString parameter is the StreamId, the int parameter is the number of values persisted per second.",
+            "nullable": true
+          },
+          "topic": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true,
+            "deprecated": true
+          },
+          "values": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true,
+            "deprecated": true
+          },
+          "streams": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true,
+            "readOnly": true,
+            "deprecated": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Metrics of the persisting processes running in a topic in a specific timeframe"
+      },
+      "TopicCleanupPolicy": {
+        "enum": [
+          "Delete",
+          "Compact",
+          "DeleteAndCompact"
+        ],
+        "type": "string",
+        "description": "This config designates the retention policy to use on log segments"
+      },
+      "Topic": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Used in the SDK to connect to the topic",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the topic",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Datetime when the topic was created",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Datetime when the topic was updated",
+            "format": "date-time"
+          },
+          "persisted": {
+            "type": "boolean",
+            "description": "Whether the topic is flagged for persistence"
+          },
+          "persistedStatus": {
+            "$ref": "#/components/schemas/ProgressStatus"
+          },
+          "external": {
+            "type": "boolean",
+            "description": "Whether this topic has been created externally to the workspace scope"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "The unique identifier of the workspace the topic belongs to",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/TopicStatus"
+          },
+          "errorStatus": {
+            "$ref": "#/components/schemas/TopicErrorStatus"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "The Last error the topic encountered. Only valid on Error state.",
+            "nullable": true
+          },
+          "externalSourceName": {
+            "type": "string",
+            "description": "The name of the External Source",
+            "nullable": true
+          },
+          "externalDestinationName": {
+            "type": "string",
+            "description": "The name of the External Destination",
+            "nullable": true
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/TopicConfiguration"
+          },
+          "sdkTopic": {
+            "type": "boolean",
+            "description": "True if it's an internal sdk topic"
+          },
+          "linkedTopicInfo": {
+            "$ref": "#/components/schemas/LinkedTopicInfo"
+          },
+          "linkedTopicDestinationInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LinkedTopicDestinationInfo"
+            },
+            "nullable": true
+          },
+          "dataTier": {
+            "type": "string",
+            "description": "Data tier name",
+            "nullable": true
+          },
+          "unmanaged": {
+            "type": "boolean",
+            "description": "True if is not managed by Quix"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes properties of a topic"
+      },
+      "LinkedTopicDestinationInfo": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "The unique identifier of the workspace where the linked topic originates.",
+            "nullable": true
+          },
+          "topicName": {
+            "type": "string",
+            "description": "The name of the linked topic within the source workspace.",
+            "nullable": true
+          },
+          "repositoryName": {
+            "type": "string",
+            "description": "The name of the repository associated with the linked topic.",
+            "nullable": true
+          },
+          "environmentName": {
+            "type": "string",
+            "description": "The name of the environment where the linked topic is located.",
+            "nullable": true
+          },
+          "hasWorkspaceAccess": {
+            "type": "boolean",
+            "description": "Indicates if the destination has access to the workspace."
+          },
+          "hasRepositoryAccess": {
+            "type": "boolean",
+            "description": "Indicates if the destination has access to the repository."
+          },
+          "isScratchpad": {
+            "type": "boolean",
+            "description": "Indicates if the destination topic is a scratchpad topic."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes information about the destination of a linked topic"
+      },
+      "TopicErrorStatus": {
+        "enum": [
+          "Creating",
+          "Deleting",
+          "Updating",
+          "Persisting"
+        ],
+        "type": "string",
+        "description": "Where the topic failed"
+      },
+      "TopicCreateConfigurationRequest": {
+        "type": "object",
+        "properties": {
+          "partitions": {
+            "type": "integer",
+            "description": "Partitions of the topic",
+            "format": "int32",
+            "nullable": true
+          },
+          "replicationFactor": {
+            "type": "integer",
+            "description": "Replication factor of the topic",
+            "format": "int32",
+            "nullable": true
+          },
+          "retentionInMinutes": {
+            "type": "integer",
+            "description": "Time in minutes the message broker will retain the messages in the topic",
+            "format": "int32",
+            "nullable": true
+          },
+          "retentionInBytes": {
+            "type": "integer",
+            "description": "Number of bytes maximum the message broker will retain messages in the topic",
+            "format": "int64",
+            "nullable": true
+          },
+          "cleanupPolicy": {
+            "$ref": "#/components/schemas/TopicCleanupPolicy"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes the configuration for the topic"
+      },
+      "LinkedTopicInfo": {
+        "type": "object",
+        "properties": {
+          "isScratchpad": {
+            "type": "boolean",
+            "description": "Indicates if the topic is a scratchpad topic."
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "Indicates if the topic is locked. Locked topics cannot be modified."
+          },
+          "isLinked": {
+            "type": "boolean",
+            "description": "Indicates if the topic is linked to another topic."
+          },
+          "hasRepositoryAccess": {
+            "type": "boolean",
+            "description": "Indicates if the topic has access to a repository."
+          },
+          "hasWorkspaceAccess": {
+            "type": "boolean",
+            "description": "Indicates if the topic has access to a workspace."
+          },
+          "environmentName": {
+            "type": "string",
+            "description": "The name of the environment associated with the topic.",
+            "nullable": true
+          },
+          "repositoryName": {
+            "type": "string",
+            "description": "The name of the repository associated with the topic.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes information about a linked topic"
+      },
+      "ProgressStatus": {
+        "enum": [
+          "InProgress",
+          "Complete"
+        ],
+        "type": "string",
+        "description": "The progress status of an action"
+      },
+      "TopicStatus": {
+        "enum": [
+          "Creating",
+          "Ready",
+          "Deleting",
+          "Error",
+          "Updating",
+          "Cleaning"
+        ],
+        "type": "string",
+        "description": "The possible statuses of a topic"
+      },
+      "TopicConfiguration": {
+        "type": "object",
+        "properties": {
+          "partitions": {
+            "type": "integer",
+            "description": "Partitions of the topic",
+            "format": "int32",
+            "nullable": true
+          },
+          "replicationFactor": {
+            "type": "integer",
+            "description": "Replication factor of the topic",
+            "format": "int32",
+            "nullable": true
+          },
+          "retentionInMinutes": {
+            "type": "integer",
+            "description": "Time in minutes the message broker will retain the messages in the topic",
+            "format": "int32",
+            "nullable": true
+          },
+          "retentionInBytes": {
+            "type": "integer",
+            "description": "Number of bytes maximum the message broker will retain messages in the topic",
+            "format": "int64",
+            "nullable": true
+          },
+          "cleanupPolicy": {
+            "$ref": "#/components/schemas/TopicCleanupPolicy"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes the configuration for the topic"
+      }
+    }
+  }
+}

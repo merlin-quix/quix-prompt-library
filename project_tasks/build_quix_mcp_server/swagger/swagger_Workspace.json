@@ -1,0 +1,3136 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Portal API - Workspace",
+    "version": "2.0"
+  },
+  "paths": {
+    "/workspaces/{workspaceId}/variables": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Endpoint used to get workspace variables",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      },
+      "put": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Sets variables for a given workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "dictionary of variables",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/workspaces/{workspaceId}/sync/status": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets workspace sync status",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSyncStatus"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSyncStatus"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSyncStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/sync": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Executes Sync in DryRun mode and returns related changes",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "git reference or when null it uses head",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "appsReachableToNextReference",
+            "in": "query",
+            "description": "if true, it gets apps versions reachable in the next reference, otherwise it will use latest",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSyncResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSyncResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSyncResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Executes Sync and returns related changes",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "git reference or when null it uses head",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "appsReachableToNextReference",
+            "in": "query",
+            "description": "if true, it gets apps versions reachable in the next reference, otherwise it will use latest",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "createDeploymentsAsStopped",
+            "in": "query",
+            "description": "if true, it creates deployments as stopped",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSyncResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSyncResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSyncResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/sync/invalidVariables": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Validates sync variables",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "git reference or when null it uses head",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkspaceVariableValidationError"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkspaceVariableValidationError"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkspaceVariableValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/sync/invalidSecrets": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Validates sync secrets",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "git reference or when null it uses head",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SecretValidationError"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SecretValidationError"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SecretValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/yaml": {
+      "put": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Updates the workpace descriptor from a raw yaml",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workpace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commitMessage",
+            "in": "query",
+            "description": "message to put in the commit",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets the raw yaml corresponding to the given reference or head if null",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "git reference",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/yaml/current": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets a yaml corresponding to the existing state of the platform",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/yaml/empty": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets an empty yaml workspace descriptor",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/yaml/empty": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets an empty yaml workspace descriptor",
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/yaml/commits": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets the commits of the workspace descriptor",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "The git reference",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit of commits retrieved",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitCommit"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitCommit"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitCommit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/yaml/commits/last": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets the last commit of the workspace descriptor",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/yaml/tags": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets the tags that affect the workspace yaml",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspaceId Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitTag"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitTag"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitTag"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/tags": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Creates a new tag",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request describing the details for creating a new tag",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagCreateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagCreateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagCreateRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/TagCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/tags/{tag}": {
+      "delete": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Deletes a tag",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tag",
+            "in": "path",
+            "description": "The tag to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/merge/{branchName}": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Asynchronously merges a given branch into the current branch using the specified merge strategy",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "branchName",
+            "in": "path",
+            "description": "name of the branch to merge into current",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mergeStrategyRequest",
+            "in": "query",
+            "description": "strategy of the merge",
+            "schema": {
+              "$ref": "#/components/schemas/MergeStrategyRequest"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/branch/{branchName}": {
+      "patch": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Asynchronously changes the current branch to a the specified branch",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "branchName",
+            "in": "path",
+            "description": "The name of the branch to be set",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "branchProtected",
+            "in": "query",
+            "description": "true if the branch is protected",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Asynchronously creates a new branch in the Git repository located in the specified workspace.\t\t///",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "branchName",
+            "in": "path",
+            "description": "branch to create",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/pull": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Pulls the latest changes from the remote.",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The unique identifier for the Workspace.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/push": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Pushes the latest changes from the remote.",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The unique identifier for the Workspace.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/commits/{reference}": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets the commit of a git reference",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "path",
+            "description": "commit reference",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/zip": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets a zip file containing the contents of the workspace.",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "The reference (optional)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Creates a workspace V2",
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "create request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceCreateRequestV2"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceCreateRequestV2"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceCreateRequestV2"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceCreateRequestV2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets all workspaces for a given organisation",
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workspace"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workspace"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workspace"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/scratchpad": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScratchpadCreateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScratchpadCreateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScratchpadCreateRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ScratchpadCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}": {
+      "delete": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Deletes a Workspace by id",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets a workspace by id",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/rename/{workspaceName}": {
+      "patch": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Renames a workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "workspaceName",
+            "in": "path",
+            "description": "the new name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/enable": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Enables a given workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/disable": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Disables a given workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/all-linkable": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workspace"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workspace"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workspace"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/certificates": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Get certificates of a workspace.",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/broker/librdkafka": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets a workspace broker details in librdkafka format",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/pullrequests": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Creates a pull request in our Git provider from the source branch indicated in the body\r\nto the workspace's branch",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id that will be the target",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The pull request creation model",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PullRequestCreateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PullRequestCreateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PullRequestCreateRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/PullRequestCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/sdktokens": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Gets the currently active sdk tokens",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSdkTokens"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSdkTokens"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSdkTokens"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/sdktokens/rotate": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Invalidates the current sdk token, makes next the current and generates a new upcoming token.\r\nThe invalidated token might take a few minutes to fully deactivate",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSdkTokens"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSdkTokens"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSdkTokens"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspaces/broker/test": {
+      "post": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Broker credentials test for Create workspace endpoint",
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Broker settings to test",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceBrokerSettings"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceBrokerSettings"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceBrokerSettings"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceBrokerSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/workspaces/{workspaceId}/branches/{reference}": {
+      "get": {
+        "tags": [
+          "Workspace"
+        ],
+        "summary": "Get the branches containing a reference",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "path",
+            "description": "The reference (branch, tag or sha)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WorkspaceBrokerType": {
+        "enum": [
+          "SharedKafka",
+          "ConfluentCloud",
+          "SelfHosted",
+          "AmazonMsk",
+          "RedPanda",
+          "Aiven",
+          "Upstash",
+          "StreamNative"
+        ],
+        "type": "string"
+      },
+      "BrokerSaslMechanism": {
+        "enum": [
+          "Gssapi",
+          "Plain",
+          "ScramSha256",
+          "ScramSha512",
+          "OAuthBearer"
+        ],
+        "type": "string",
+        "description": "SaslMechanism enum values"
+      },
+      "Mark": {
+        "type": "object",
+        "properties": {
+          "line": {
+            "type": "integer",
+            "description": "Line in the yaml",
+            "format": "int32"
+          },
+          "column": {
+            "type": "integer",
+            "description": "Column in the uaml",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Specific point in the yaml"
+      },
+      "SelfHostedKafkaSettings": {
+        "type": "object",
+        "properties": {
+          "brokerList": {
+            "type": "string",
+            "description": "List of brokers that can be used for bootstrap-server\r\nand to connect to",
+            "nullable": true
+          },
+          "zookeeper": {
+            "type": "string",
+            "description": "Zookeeper address, optional",
+            "nullable": true
+          },
+          "securityMode": {
+            "$ref": "#/components/schemas/BrokerSecurityMode"
+          },
+          "saslMechanism": {
+            "$ref": "#/components/schemas/BrokerSaslMechanism"
+          },
+          "username": {
+            "type": "string",
+            "description": "Username, can be null if authentication is not enabled",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "Password, can be null if authentication is not enabled",
+            "nullable": true
+          },
+          "sslCertificatesBase64": {
+            "type": "string",
+            "description": "Zip file in base 64, containing a ca.cert file with the\r\nCertificate Authority",
+            "nullable": true
+          },
+          "clusterSize": {
+            "type": "integer",
+            "description": "Cluster size of self hosted kafka broker.\r\nIt will be used for hint as maximum topic replica factor",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes Self Hosted Broker Settings"
+      },
+      "ScratchpadWorkspaceInfo": {
+        "type": "object",
+        "properties": {
+          "isScratchpad": {
+            "type": "boolean",
+            "description": "Indicates whether the workspace is a scratchpad."
+          },
+          "sourceWorkspaceId": {
+            "type": "string",
+            "description": "The source environment ID",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Diff": {
+        "type": "object",
+        "properties": {
+          "diffType": {
+            "$ref": "#/components/schemas/DiffType"
+          },
+          "property": {
+            "type": "string",
+            "description": "Property that changed",
+            "nullable": true
+          },
+          "oldValue": {
+            "description": "Old value",
+            "nullable": true
+          },
+          "newValue": {
+            "description": "New value",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WorkspaceBrokerSettings": {
+        "type": "object",
+        "properties": {
+          "brokerType": {
+            "$ref": "#/components/schemas/WorkspaceBrokerType"
+          },
+          "syncTopics": {
+            "type": "boolean",
+            "description": "Syncronize existing topics in the broker"
+          },
+          "quotas": {
+            "$ref": "#/components/schemas/BrokerQuotas"
+          },
+          "confluentCloudSettings": {
+            "$ref": "#/components/schemas/ConfluentCloudSettings"
+          },
+          "amazonMskSettings": {
+            "$ref": "#/components/schemas/AmazonMskSettings"
+          },
+          "selfHostedKafkaSettings": {
+            "$ref": "#/components/schemas/SelfHostedKafkaSettings"
+          },
+          "clusterSize": {
+            "type": "integer",
+            "description": "It will be used for hint as maximum topic replica factor",
+            "format": "int32",
+            "nullable": true
+          },
+          "replicaCount": {
+            "type": "integer",
+            "description": "Default replica count for topics.",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes the workspace broker settings"
+      },
+      "GitTag": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "description": "The reference of the commit",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "The message of the commit",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The datetime when the commit was created at",
+            "format": "date-time"
+          },
+          "committerName": {
+            "type": "string",
+            "description": "Name of the person who committed this commit.",
+            "nullable": true
+          },
+          "authorName": {
+            "type": "string",
+            "description": "The name of the author this commit is credited to",
+            "nullable": true
+          },
+          "authorEmail": {
+            "type": "string",
+            "description": "The email of the author this commit is credited to",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Tag name",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Tag of a commit"
+      },
+      "WorkspaceSdkTokens": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "string",
+            "description": "The currently active SDK token. If the tokens get rotated, this key will be deactivated.",
+            "nullable": true
+          },
+          "next": {
+            "type": "string",
+            "description": "The currently active SDK token. If the tokens get rotated, this key will become Quix.Portal.Api.Contract.WorkspaceSdkTokens.Current and another token will be the next token.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Workspace": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "The unique identifier of the workspace",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the workspace",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/WorkspaceStatus"
+          },
+          "brokerType": {
+            "$ref": "#/components/schemas/WorkspaceBrokerType"
+          },
+          "broker": {
+            "$ref": "#/components/schemas/WorkspaceBrokerDetails"
+          },
+          "workspaceClassId": {
+            "type": "string",
+            "description": "Id of the Workspace class",
+            "nullable": true
+          },
+          "storageClassId": {
+            "type": "string",
+            "description": "Id of the Storage class",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Workspace creation date time.",
+            "format": "date-time"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "The last error the workspace encountered. When Status changes from Error, does not clear.",
+            "nullable": true
+          },
+          "brokerSettings": {
+            "$ref": "#/components/schemas/WorkspaceBrokerSettings"
+          },
+          "repositoryId": {
+            "type": "string",
+            "description": "Repository Id of the workspace (used in Workspace V2)",
+            "nullable": true
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch selected for the workspace (used in Workspace V2)",
+            "nullable": true
+          },
+          "environmentName": {
+            "type": "string",
+            "description": "Environment Name of the workspace (used in Workspace V2)",
+            "nullable": true
+          },
+          "version": {
+            "type": "integer",
+            "description": "Identifies the version of the workspace",
+            "format": "int32"
+          },
+          "branchProtected": {
+            "type": "boolean",
+            "description": "True if the associated Branch is protected"
+          },
+          "databaseServicesEnabled": {
+            "type": "boolean",
+            "description": "Database services enabled"
+          },
+          "scratchpadInfo": {
+            "$ref": "#/components/schemas/ScratchpadWorkspaceInfo"
+          },
+          "hasLinkedTopics": {
+            "type": "boolean",
+            "description": "True if contains at least one linked topic"
+          },
+          "publicUrlTemplate": {
+            "type": "string",
+            "description": "The Deployment's Url Template, replace {{url-prefix}} with Quix.Portal.Api.Contract.Deployment.UrlPrefix",
+            "nullable": true
+          },
+          "publicSessionUrlTemplate": {
+            "type": "string",
+            "description": "The template for generating public session URLs, replace {{session-id}} with the sessionId",
+            "nullable": true
+          },
+          "clusterId": {
+            "type": "string",
+            "description": "The ID of the cluster where we want to install this workspace deployments and IDEs",
+            "nullable": true
+          },
+          "nodeGroupId": {
+            "type": "string",
+            "description": "The ID of the cluster's Node Group where we want to install this workspace deployments and IDEs",
+            "nullable": true
+          },
+          "clusterConnectivityStatus": {
+            "$ref": "#/components/schemas/ConnectivityStatusResponse"
+          },
+          "brokerId": {
+            "type": "string",
+            "description": "The ID of the cluster broker configuration",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes properties of a workspace"
+      },
+      "OperationResult": {
+        "enum": [
+          "Pending",
+          "Succeed",
+          "Failed"
+        ],
+        "type": "string",
+        "description": "Result of an operation"
+      },
+      "ScratchpadCreateRequest": {
+        "type": "object",
+        "properties": {
+          "sourceWorkspaceId": {
+            "type": "string",
+            "description": "The ID of the source workspace.",
+            "nullable": true
+          },
+          "environmentName": {
+            "type": "string",
+            "description": "The name of the environment.",
+            "nullable": true
+          },
+          "branch": {
+            "type": "string",
+            "description": "The branch name.",
+            "nullable": true
+          },
+          "linkedTopicNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of linked topics.",
+            "nullable": true
+          },
+          "lockUnrelated": {
+            "type": "boolean",
+            "description": "Marks deployments and topics that are not related to the linked topics as locked"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a scratchpad create request."
+      },
+      "WorkspaceStatus": {
+        "enum": [
+          "Creating",
+          "Ready",
+          "Deleting",
+          "Error",
+          "Enabling",
+          "Disabling",
+          "Disabled"
+        ],
+        "type": "string",
+        "description": "The possible statuses of a workspace"
+      },
+      "ChangeDetails": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "$ref": "#/components/schemas/ChangeAction"
+          },
+          "current": {
+            "type": "string",
+            "description": "string representation of Current",
+            "nullable": true
+          },
+          "currentKey": {
+            "type": "string",
+            "description": "Current Key",
+            "nullable": true
+          },
+          "target": {
+            "type": "string",
+            "description": "string representation of the Target",
+            "nullable": true
+          },
+          "targetKey": {
+            "type": "string",
+            "description": "Target key",
+            "nullable": true
+          },
+          "comparisonResult": {
+            "$ref": "#/components/schemas/ComparisonResult"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Object that represents the differences between current and target"
+      },
+      "YamlPosition": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "$ref": "#/components/schemas/Mark"
+          },
+          "end": {
+            "$ref": "#/components/schemas/Mark"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a position of a given element in the yaml"
+      },
+      "PullRequestCreateRequest": {
+        "type": "object",
+        "properties": {
+          "sourceBranch": {
+            "type": "string",
+            "description": "Ths source branch",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "description": "Pull request title",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request to create a pull request"
+      },
+      "WorkspaceBrokerDetails": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Kafka Broker Address",
+            "nullable": true
+          },
+          "securityMode": {
+            "$ref": "#/components/schemas/BrokerSecurityMode"
+          },
+          "sslPassword": {
+            "type": "string",
+            "description": "SSL password.",
+            "nullable": true
+          },
+          "saslMechanism": {
+            "$ref": "#/components/schemas/BrokerSaslMechanism"
+          },
+          "username": {
+            "type": "string",
+            "description": "SASL username.",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "SASL password.",
+            "nullable": true
+          },
+          "hasCertificate": {
+            "type": "boolean",
+            "description": "Whether the broker uses certificates to authenticate either client or server"
+          },
+          "maxTopicReplicaFactor": {
+            "type": "integer",
+            "description": "Maximum replica factor for a topic (Obsolete).\r\nThis is valid only for self hosted kafka brokers and it is estimated\r\nfrom the cluster size at the moment of creation of the workspace",
+            "format": "int32",
+            "nullable": true,
+            "deprecated": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Broker connection details of the Workspace"
+      },
+      "WorkspaceSyncError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Details of the error",
+            "nullable": true
+          },
+          "commitReference": {
+            "type": "string",
+            "description": "Commit Reference corresponding to the error",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Workspace Sync Error"
+      },
+      "GitCommit": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "description": "The reference of the commit",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "The message of the commit",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The datetime when the commit was created at",
+            "format": "date-time"
+          },
+          "committerName": {
+            "type": "string",
+            "description": "Name of the person who committed this commit.",
+            "nullable": true
+          },
+          "authorName": {
+            "type": "string",
+            "description": "The name of the author this commit is credited to",
+            "nullable": true
+          },
+          "authorEmail": {
+            "type": "string",
+            "description": "The email of the author this commit is credited to",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a single git commit"
+      },
+      "SyncStatus": {
+        "enum": [
+          "Synchronized",
+          "OutOfSync",
+          "Error"
+        ],
+        "type": "string",
+        "description": "Represents the Workspace Sync Status"
+      },
+      "BrokerSecurityMode": {
+        "enum": [
+          "Ssl",
+          "SaslSsl",
+          "Sasl",
+          "PlainText"
+        ],
+        "type": "string",
+        "description": "Broker security mode."
+      },
+      "WorkspaceSyncResult": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "string",
+            "description": "String representation of the current state of the workspace",
+            "nullable": true
+          },
+          "target": {
+            "type": "string",
+            "description": "String representation of the target state of the workspace after sync",
+            "nullable": true
+          },
+          "applicationsSyncResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SyncOperationResult"
+            },
+            "description": "Applications Changes",
+            "nullable": true
+          },
+          "deploymentsSyncResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SyncOperationResult"
+            },
+            "description": "Deployments changes",
+            "nullable": true
+          },
+          "topicsSyncResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SyncOperationResult"
+            },
+            "description": "Topics changes",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the sync result of a Workspace"
+      },
+      "WorkspaceVariableValidationError": {
+        "type": "object",
+        "properties": {
+          "templateString": {
+            "type": "string",
+            "description": "Template string that failed",
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "description": "Error when applying variables to the template string",
+            "nullable": true
+          },
+          "position": {
+            "$ref": "#/components/schemas/YamlPosition"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/ErrorReason"
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "All Variables when it's a format issue, otherwise missing variables",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Validation errors of workspace variables"
+      },
+      "TagCreateRequest": {
+        "type": "object",
+        "properties": {
+          "tagName": {
+            "type": "string",
+            "description": "The name of the new tag.",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "description": "The branch/tag/commit to create the new tag at",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a tag create request"
+      },
+      "WorkspaceCreateRequestV2": {
+        "type": "object",
+        "properties": {
+          "repositoryId": {
+            "type": "string",
+            "description": "RepositoryId",
+            "nullable": true
+          },
+          "workspaceClassId": {
+            "type": "string",
+            "description": "Workspace class id",
+            "nullable": true
+          },
+          "storageClassId": {
+            "type": "string",
+            "description": "Storage class id",
+            "nullable": true
+          },
+          "brokerSettings": {
+            "$ref": "#/components/schemas/WorkspaceBrokerSettings"
+          },
+          "environmentName": {
+            "type": "string",
+            "description": "Environment Name",
+            "nullable": true
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch Name",
+            "nullable": true
+          },
+          "branchProtected": {
+            "type": "boolean",
+            "description": "True if the associated Branch is protected"
+          },
+          "clusterId": {
+            "type": "string",
+            "description": "The ID of the cluster where we want to install this workspace deployments and IDEs",
+            "nullable": true
+          },
+          "nodeGroupId": {
+            "type": "string",
+            "description": "The ID of the cluster's Node Group where we want to install this workspace deployments and IDEs",
+            "nullable": true
+          },
+          "brokerId": {
+            "type": "string",
+            "description": "The ID of the cluster broker configuration",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a workspace v2 create request"
+      },
+      "AmazonMskSettings": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "nullable": true
+          },
+          "credentials": {
+            "$ref": "#/components/schemas/AmazonCredentials"
+          },
+          "secretKmsKeyArn": {
+            "type": "string",
+            "nullable": true
+          },
+          "clusterArn": {
+            "type": "string",
+            "nullable": true
+          },
+          "brokerList": {
+            "type": "string",
+            "nullable": true
+          },
+          "zookeeper": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityMode": {
+            "$ref": "#/components/schemas/BrokerSecurityMode"
+          },
+          "saslMechanism": {
+            "$ref": "#/components/schemas/BrokerSaslMechanism"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SyncOperationResult": {
+        "type": "object",
+        "properties": {
+          "changeDetails": {
+            "$ref": "#/components/schemas/ChangeDetails"
+          },
+          "result": {
+            "$ref": "#/components/schemas/OperationResult"
+          },
+          "error": {
+            "type": "string",
+            "description": "The error message, when failed",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Result of Workspace Sync Operation"
+      },
+      "ConnectivityStatusResponse": {
+        "enum": [
+          "Disabled",
+          "Offline",
+          "Unstable",
+          "Online"
+        ],
+        "type": "string"
+      },
+      "WorkspaceSyncStatus": {
+        "type": "object",
+        "properties": {
+          "lastRepoCommitReference": {
+            "type": "string",
+            "description": "Last repository commit reference affecting the descriptor",
+            "nullable": true
+          },
+          "yamlOutOfSync": {
+            "type": "boolean",
+            "description": "True if the Yaml is out of sync"
+          },
+          "variablesOutOfSync": {
+            "type": "boolean",
+            "description": "True if the variables is out of sync"
+          },
+          "deploymentsVersionsOutOfSync": {
+            "type": "boolean",
+            "description": "True if deployments latest deployments versions are out of sync",
+            "nullable": true
+          },
+          "lastVariablesHash": {
+            "type": "string",
+            "description": "Workspace last sync variables hash",
+            "nullable": true
+          },
+          "syncedCommitReference": {
+            "type": "string",
+            "description": "Workspace last sync commit reference",
+            "nullable": true
+          },
+          "error": {
+            "$ref": "#/components/schemas/WorkspaceSyncError"
+          },
+          "status": {
+            "$ref": "#/components/schemas/SyncStatus"
+          },
+          "commitsBehind": {
+            "type": "integer",
+            "description": "LastCommitReference distance to the latest",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Workspace Syc Status Details"
+      },
+      "AmazonCredentials": {
+        "type": "object",
+        "properties": {
+          "accessKeyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "secretAccessKey": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorReason": {
+        "enum": [
+          "Missing",
+          "Format"
+        ],
+        "type": "string",
+        "description": "Error reason"
+      },
+      "MergeStrategyRequest": {
+        "enum": [
+          "Ours",
+          "Theirs",
+          "FailOnConflict"
+        ],
+        "type": "string",
+        "description": "Enum specifying how merge should deal with conflicting regions\r\nof the files."
+      },
+      "ComparisonResult": {
+        "type": "object",
+        "properties": {
+          "diffs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Diff"
+            },
+            "description": "Diffs related to the comparison",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Difference between two objects"
+      },
+      "ConfluentCloudSettings": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "description": "Confluent Cloud Api Key",
+            "nullable": true
+          },
+          "apiSecret": {
+            "type": "string",
+            "description": "Confluent Cloud Api Secret",
+            "nullable": true
+          },
+          "clusterID": {
+            "type": "string",
+            "description": "Confluent Cloud Cluster ID",
+            "nullable": true
+          },
+          "bootstrapServer": {
+            "type": "string",
+            "description": "Confluent Cloud Bootstrap server (Broker hostname)",
+            "nullable": true
+          },
+          "restEndpoint": {
+            "type": "string",
+            "description": "Confluent Cloud REST endpoint",
+            "nullable": true
+          },
+          "clientID": {
+            "type": "string",
+            "description": "Partnership ID",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes Confluent cluster settings"
+      },
+      "DiffType": {
+        "enum": [
+          "Set",
+          "Unset",
+          "Modify"
+        ],
+        "type": "string",
+        "description": "Type of diff"
+      },
+      "SecretValidationError": {
+        "type": "object",
+        "properties": {
+          "secretKey": {
+            "type": "string",
+            "description": "Missing required Secret Key",
+            "nullable": true
+          },
+          "position": {
+            "$ref": "#/components/schemas/YamlPosition"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Result of secret validation"
+      },
+      "ChangeAction": {
+        "enum": [
+          "Added",
+          "Modified",
+          "Deleted",
+          "Unmodified"
+        ],
+        "type": "string",
+        "description": "Change Action"
+      },
+      "BrokerQuotas": {
+        "type": "object",
+        "properties": {
+          "brokerProducerByteRate": {
+            "type": "integer",
+            "description": "Max producer byte rate per second",
+            "format": "int32",
+            "nullable": true
+          },
+          "brokerConsumerByteRate": {
+            "type": "integer",
+            "description": "Max consumer byte rate per second",
+            "format": "int32",
+            "nullable": true
+          },
+          "brokerRequestPercentage": {
+            "type": "integer",
+            "description": "Max percentage of requests",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Quotas to be applied to the workspace user"
+      }
+    }
+  }
+}

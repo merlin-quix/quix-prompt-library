@@ -1,0 +1,1178 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Portal API - Applications",
+    "version": "2.0"
+  },
+  "paths": {
+    "/{workspaceId}/applications": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Get all available applications in the workspace id",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "Workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter string",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeUpdatedAt",
+            "in": "query",
+            "description": "true if we want to get the updated at (not included by default because it's an expensive operation",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Application"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Application"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Application"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Create a new application in a Workspace",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The create request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationCreateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationCreateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationCreateRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/applications/{applicationId}": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Get a single application",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "Application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "Commit reference",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeUpdatedAt",
+            "in": "query",
+            "description": "true if we want to get the updated at (not included by default because it's an expensive operation",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Update an existing application",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "Application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationUpdateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationUpdateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationUpdateRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Deletes the application",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deleteFiles",
+            "in": "query",
+            "description": "Delete all files when deleting application",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/{workspaceId}/applications/{applicationId}/files": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Get all file names in application",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "Commit reference",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/applications/{applicationId}/zip": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Get all files in a zip present in the application",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "Commit reference",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/{workspaceId}/applications/import": {
+      "post": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Import applications from zip",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/{workspaceId}/applications/{applicationId}/duplicate": {
+      "post": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Duplicates an existing application",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The original application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The duplication request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationDuplicateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationDuplicateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationDuplicateRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationDuplicateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/applications/{applicationId}/commits": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Get the history of the application",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gitReference",
+            "in": "query",
+            "description": "The git reference (optional)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "Alias for gitReference (optional)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit of commits retrieved (optional)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitCommit"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitCommit"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitCommit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/applications/{applicationId}/commits/last": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Get the last commit that affected the application",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitCommit"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspaceId}/applications/{applicationId}/tags": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Get the tags of the application",
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "description": "The workspace id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "description": "The application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitTag"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitTag"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GitTag"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApplicationUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "applicationName": {
+            "type": "string",
+            "description": "The new name for the application",
+            "nullable": true
+          },
+          "applicationPath": {
+            "type": "string",
+            "description": "The new path of the application",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "description": "The new language for the application",
+            "nullable": true
+          },
+          "dockerfile": {
+            "type": "string",
+            "description": "The new entry point for the application",
+            "nullable": true
+          },
+          "runEntryPoint": {
+            "type": "string",
+            "description": "The new run entry point for the application",
+            "nullable": true
+          },
+          "defaultFile": {
+            "type": "string",
+            "description": "Defines the default file to show when loading the project in a Code Explorer",
+            "nullable": true
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationVariable"
+            },
+            "description": "Defines the variables of the application",
+            "nullable": true
+          },
+          "includedFolders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of paths to include",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationCreateRequest": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Language of the application",
+            "nullable": true
+          },
+          "applicationName": {
+            "type": "string",
+            "description": "Name of the application",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "description": "Directory where the application is",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Application": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace id owning the application",
+            "nullable": true
+          },
+          "applicationId": {
+            "type": "string",
+            "description": "The application id",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "description": "Directory where the application is",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the application",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "description": "Language of the application",
+            "nullable": true
+          },
+          "dockerfile": {
+            "type": "string",
+            "description": "The build and deploy entry point (commonly a Dockerfile)",
+            "nullable": true
+          },
+          "runEntryPoint": {
+            "type": "string",
+            "description": "The Run entry point (main code file to run)",
+            "nullable": true
+          },
+          "defaultFile": {
+            "type": "string",
+            "description": "Defines the default file to show when loading the project in a Code Explorer",
+            "nullable": true
+          },
+          "directory": {
+            "type": "string",
+            "description": "Directory where the application is",
+            "nullable": true
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationVariable"
+            },
+            "description": "Defines the list of variables of the application",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The time the application was last updated at",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApplicationStatus"
+          },
+          "errorStatus": {
+            "$ref": "#/components/schemas/ApplicationErrorStatus"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "The explanation of the error status.",
+            "nullable": true
+          },
+          "libraryItemId": {
+            "type": "string",
+            "description": "A reference to the library item ID from which this application was created",
+            "nullable": true
+          },
+          "isConnector": {
+            "type": "boolean",
+            "description": "Indicates whether the application is a connector",
+            "nullable": true
+          },
+          "isAuxiliaryService": {
+            "type": "boolean",
+            "description": "Indicates whether the library item is an auxiliary service",
+            "nullable": true
+          },
+          "includedFolders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of paths to include",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an application"
+      },
+      "VariableInputType": {
+        "enum": [
+          "Topic",
+          "FreeText",
+          "HiddenText",
+          "InputTopic",
+          "OutputTopic",
+          "Secret"
+        ],
+        "type": "string",
+        "description": "Input Type of a variable"
+      },
+      "ApplicationErrorStatus": {
+        "enum": [
+          "YamlFormat",
+          "Other"
+        ],
+        "type": "string",
+        "description": "The reason the application is in a error status."
+      },
+      "ApplicationStatus": {
+        "enum": [
+          "Ready",
+          "Error"
+        ],
+        "type": "string",
+        "description": "The status of the application."
+      },
+      "ApplicationDuplicateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the new application",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "description": "Path of the new application",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GitTag": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "description": "The reference of the commit",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "The message of the commit",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The datetime when the commit was created at",
+            "format": "date-time"
+          },
+          "committerName": {
+            "type": "string",
+            "description": "Name of the person who committed this commit.",
+            "nullable": true
+          },
+          "authorName": {
+            "type": "string",
+            "description": "The name of the author this commit is credited to",
+            "nullable": true
+          },
+          "authorEmail": {
+            "type": "string",
+            "description": "The email of the author this commit is credited to",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Tag name",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Tag of a commit"
+      },
+      "ApplicationVariable": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the variable",
+            "nullable": true
+          },
+          "inputType": {
+            "$ref": "#/components/schemas/VariableInputType"
+          },
+          "multiline": {
+            "type": "boolean",
+            "description": "True if block is multiline",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the variable",
+            "nullable": true
+          },
+          "defaultValue": {
+            "type": "string",
+            "description": "Default value of the variable",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the variable is mandatory in order to Run / Deploy the project"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a variable of an application"
+      },
+      "GitCommit": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "description": "The reference of the commit",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "The message of the commit",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The datetime when the commit was created at",
+            "format": "date-time"
+          },
+          "committerName": {
+            "type": "string",
+            "description": "Name of the person who committed this commit.",
+            "nullable": true
+          },
+          "authorName": {
+            "type": "string",
+            "description": "The name of the author this commit is credited to",
+            "nullable": true
+          },
+          "authorEmail": {
+            "type": "string",
+            "description": "The email of the author this commit is credited to",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a single git commit"
+      }
+    }
+  }
+}

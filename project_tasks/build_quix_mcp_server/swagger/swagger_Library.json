@@ -1,0 +1,1687 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Portal API - Library",
+    "version": "2.0"
+  },
+  "paths": {
+    "/library": {
+      "post": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Retrieves the library items matching the specified filters",
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request describing the filters and the paging details of the list view to retrieve",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryListViewRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryListViewRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryListViewRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryListViewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryItem"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryItem"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryItem"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/library/query": {
+      "post": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Retrieves the library items matching the specified filters",
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request describing the filters and the paging details of the list view to retrieve",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryListViewRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryListViewRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryListViewRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryListViewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryItem"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryItem"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/configuration": {
+      "get": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Retrieves library configuration",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryConfiguration"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryConfiguration"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryConfiguration"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/languages": {
+      "get": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Retrieves all available languages",
+        "parameters": [
+          {
+            "name": "connectors",
+            "in": "query",
+            "description": "Filters items based on whether they are connectors:\r\n- If `true`, includes only connectors.\r\n- If `false`, excludes connectors.\r\n- If `null`, includes all items.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "auxiliaryServices",
+            "in": "query",
+            "description": "Filters items based on whether they are auxiliary services:\r\n- If `true`, includes only auxiliary services.\r\n- If `false`, excludes auxiliary services.\r\n- If `null`, includes all items.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/tags": {
+      "get": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Retrieves all available tags",
+        "parameters": [
+          {
+            "name": "connectors",
+            "in": "query",
+            "description": "Filters items based on whether they are connectors:\r\n- If `true`, includes only connectors.\r\n- If `false`, excludes connectors.\r\n- If `null`, includes all items.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "auxiliaryServices",
+            "in": "query",
+            "description": "Filters items based on whether they are auxiliary services:\r\n- If `true`, includes only auxiliary services.\r\n- If `false`, excludes auxiliary services.\r\n- If `null`, includes all items.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryTagGroup"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryTagGroup"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryTagGroup"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/{itemId}/details": {
+      "get": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Retrieves the details of a specific library item",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "The globally unique identifier of the library item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryItemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryItemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryItemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/{itemId}/files/content": {
+      "post": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Retrieves the file content for a file within a library item",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "The globally unique identifier of the library item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request describing the details to get the content of a library file",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryFileContentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryFileContentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryFileContentRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryFileContentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/library/{itemId}/icon": {
+      "get": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Retrieves the Icon file content of a library item",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "The globally unique identifier of the library item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/library/{itemId}/zip": {
+      "post": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Retrieves the library item content as a zip",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "The globally unique identifier of the library item",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request describing the details to get the content of a library item",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryZipContentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryZipContentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryZipContentRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/LibraryZipContentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/library/deployment": {
+      "post": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Creates a deployment from a library item",
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request describing the library item and other details needed to create a deployment",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDeploymentFromLibraryRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDeploymentFromLibraryRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDeploymentFromLibraryRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDeploymentFromLibraryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/application": {
+      "post": {
+        "tags": [
+          "Library"
+        ],
+        "summary": "Creates an application from a library item",
+        "description": "If the application name or the application paths are not provided, it will find an available\r\n            name by appending a number (2, 3, ...) to the library item name. For example, \"Demo Data 2\"",
+        "parameters": [
+          {
+            "name": "X-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request describing the library item and other details needed to create a project.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApplicationFromLibraryRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApplicationFromLibraryRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApplicationFromLibraryRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApplicationFromLibraryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateDeploymentFromLibraryRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "Id of the workspace the deployment belongs to",
+            "nullable": true
+          },
+          "deploymentName": {
+            "type": "string",
+            "description": "The name to use for the new deployment",
+            "nullable": true
+          },
+          "libraryItemId": {
+            "type": "string",
+            "description": "The library item to create the project from",
+            "nullable": true
+          },
+          "createApplication": {
+            "type": "boolean",
+            "description": "Create application from the deployment"
+          },
+          "environmentVariables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Environment variables for this deployment.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a deployment create request using a library item"
+      },
+      "LibraryTagGroup": {
+        "type": "object",
+        "properties": {
+          "tagGroup": {
+            "type": "string",
+            "description": "Unique identifier of the library Tag Group",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The tags of the tag group",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Model for the Library Tag group. It contains the tags belonging to this tag group."
+      },
+      "DeploymentType": {
+        "enum": [
+          "Service",
+          "Job"
+        ],
+        "type": "string",
+        "description": "Type of deployment."
+      },
+      "DeploymentGitReferenceType": {
+        "enum": [
+          "Commit",
+          "Tag",
+          "Any"
+        ],
+        "type": "string",
+        "description": "Enum that represent a Git Reference type of Quix.Portal.Api.Contract.Deployment."
+      },
+      "DeploymentStatus": {
+        "enum": [
+          "QueuedForBuild",
+          "Building",
+          "Deleting",
+          "BuildFailed",
+          "BuildSuccessful",
+          "QueuedForDeployment",
+          "Deploying",
+          "Starting",
+          "DeploymentFailed",
+          "Running",
+          "Stopping",
+          "RuntimeError",
+          "Completed",
+          "Stopped"
+        ],
+        "type": "string",
+        "description": "Enum that represent status of Quix.Portal.Api.Contract.Deployment."
+      },
+      "LibraryListViewRequest": {
+        "type": "object",
+        "properties": {
+          "languages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The language filters. All items matching one of the languages are returned",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The tag filters. Only items matching all tags are returned",
+            "nullable": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "description": "The page index, tarting with 0. Optional. Only used if Quix.Portal.Api.Contract.Requests.Library.LibraryListViewRequest.PageLength is also provided",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageLength": {
+            "type": "integer",
+            "description": "The number of items on each page. Optional. Only used if Quix.Portal.Api.Contract.Requests.Library.LibraryListViewRequest.PageIndex is also provided",
+            "format": "int32",
+            "nullable": true
+          },
+          "connectors": {
+            "type": "boolean",
+            "description": "Filters items based on whether they are connectors:\r\n- If `true`, includes only connectors.\r\n- If `false`, excludes connectors.\r\n- If `null`, no filter.",
+            "nullable": true
+          },
+          "auxiliaryServices": {
+            "type": "boolean",
+            "description": "Filters items based on whether they are auxiliary services:\r\n- If `true`, includes only auxiliary services.\r\n- If `false`, excludes auxiliary services.\r\n- If `null`, no filter.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes the request details for retreiving the list view of library items"
+      },
+      "LibraryItemDeployNetwork": {
+        "type": "object",
+        "properties": {
+          "serviceName": {
+            "type": "string",
+            "description": "Service name",
+            "nullable": true
+          },
+          "ports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LibraryItemDeployPortMapping"
+            },
+            "description": "Ports to map",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LibraryItemDeployPortMapping": {
+        "type": "object",
+        "properties": {
+          "port": {
+            "type": "integer",
+            "description": "Port to map",
+            "format": "int32"
+          },
+          "targetPort": {
+            "type": "integer",
+            "description": "Target port",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Port mapping"
+      },
+      "PortMapping": {
+        "type": "object",
+        "properties": {
+          "port": {
+            "type": "integer",
+            "description": "Port to map",
+            "format": "int32"
+          },
+          "targetPort": {
+            "type": "integer",
+            "description": "Target port",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Port mapping"
+      },
+      "DeploymentVariable": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the Environment Variable",
+            "nullable": true
+          },
+          "inputType": {
+            "$ref": "#/components/schemas/VariableInputType"
+          },
+          "multiline": {
+            "type": "boolean",
+            "description": "True if block is multiline",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the variable",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the variable is required to run the deployment"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value of the variable\r\nin case it's a secret, it's the secret key",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represent one variable of a Deployment"
+      },
+      "ScratchpadDeploymentInfo": {
+        "type": "object",
+        "properties": {
+          "isLocked": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VariableInputType": {
+        "enum": [
+          "Topic",
+          "FreeText",
+          "HiddenText",
+          "InputTopic",
+          "OutputTopic",
+          "Secret"
+        ],
+        "type": "string",
+        "description": "Input Type of a variable"
+      },
+      "ApplicationStatus": {
+        "enum": [
+          "Ready",
+          "Error"
+        ],
+        "type": "string",
+        "description": "The status of the application."
+      },
+      "CreateApplicationFromLibraryRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace id to create the application in using a library item",
+            "nullable": true
+          },
+          "applicationName": {
+            "type": "string",
+            "description": "The name the new application",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "description": "The path of the new application",
+            "nullable": true
+          },
+          "libraryItemId": {
+            "type": "string",
+            "description": "The library item to create the project from",
+            "nullable": true
+          },
+          "placeholders": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "The placeholder replacement values",
+            "nullable": true
+          },
+          "environmentVariables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Environment variable values",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes a project create request using a library item"
+      },
+      "ResourceUserAuditInfo": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "User ID",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "Email",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First Name",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last Name",
+            "nullable": true
+          },
+          "dateTime": {
+            "type": "string",
+            "description": "Date when the resource was created/updated at",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "User Basic Info"
+      },
+      "DeploymentUpdateStatus": {
+        "enum": [
+          "None",
+          "QueuedForBuild",
+          "Building",
+          "BuildFailed",
+          "BuildSuccessful",
+          "QueuedForDeployment",
+          "Deploying",
+          "DeploymentFailed"
+        ],
+        "type": "string",
+        "description": "Enum that represent the Update status of a Quix.Portal.Api.Contract.Deployment."
+      },
+      "LibraryItem": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "description": "The globally unique identifier of the library item",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the library item",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "description": "The project's language",
+            "nullable": true
+          },
+          "isHighlighted": {
+            "type": "boolean",
+            "description": "True if this item needs to be highlighted"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "description": "The order of this item if displayed on a list",
+            "format": "int32",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The tags of the library item",
+            "nullable": true
+          },
+          "shortDescription": {
+            "type": "string",
+            "description": "The short description of the library item",
+            "nullable": true
+          },
+          "sampleTemplate": {
+            "type": "boolean",
+            "description": "Whether the item is a Sample Template without ability to Save as Project or Explore the files (for HTTP samples or similar templates using Placeholders)"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The time the library item was Created at",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The time the library item was last updated at",
+            "format": "date-time"
+          },
+          "iconFile": {
+            "type": "string",
+            "description": "Defines an icon file to show in the Library item card. Optional.",
+            "nullable": true
+          },
+          "deployReady": {
+            "type": "boolean",
+            "description": "Whether the library item has an Image built and Ready to use with the Instant Deploy feature"
+          },
+          "deployable": {
+            "type": "boolean",
+            "description": "Whether the library item is deployable with the Instant Deploy feature"
+          },
+          "isConnector": {
+            "type": "boolean",
+            "description": "Indicates whether the library item is a connector"
+          },
+          "isAuxiliaryService": {
+            "type": "boolean",
+            "description": "Indicates whether the library item is an auxiliary service"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Model used for a library item"
+      },
+      "Application": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "The workspace id owning the application",
+            "nullable": true
+          },
+          "applicationId": {
+            "type": "string",
+            "description": "The application id",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "description": "Directory where the application is",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the application",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "description": "Language of the application",
+            "nullable": true
+          },
+          "dockerfile": {
+            "type": "string",
+            "description": "The build and deploy entry point (commonly a Dockerfile)",
+            "nullable": true
+          },
+          "runEntryPoint": {
+            "type": "string",
+            "description": "The Run entry point (main code file to run)",
+            "nullable": true
+          },
+          "defaultFile": {
+            "type": "string",
+            "description": "Defines the default file to show when loading the project in a Code Explorer",
+            "nullable": true
+          },
+          "directory": {
+            "type": "string",
+            "description": "Directory where the application is",
+            "nullable": true
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationVariable"
+            },
+            "description": "Defines the list of variables of the application",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The time the application was last updated at",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApplicationStatus"
+          },
+          "errorStatus": {
+            "$ref": "#/components/schemas/ApplicationErrorStatus"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "The explanation of the error status.",
+            "nullable": true
+          },
+          "libraryItemId": {
+            "type": "string",
+            "description": "A reference to the library item ID from which this application was created",
+            "nullable": true
+          },
+          "isConnector": {
+            "type": "boolean",
+            "description": "Indicates whether the application is a connector",
+            "nullable": true
+          },
+          "isAuxiliaryService": {
+            "type": "boolean",
+            "description": "Indicates whether the library item is an auxiliary service",
+            "nullable": true
+          },
+          "includedFolders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of paths to include",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an application"
+      },
+      "LibraryItemDeploySettings": {
+        "type": "object",
+        "properties": {
+          "deploymentType": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "cpuMillicores": {
+            "type": "integer",
+            "description": "Maximum CPU millicores reserved for this model.",
+            "format": "int32"
+          },
+          "memoryInMb": {
+            "type": "integer",
+            "description": "Maximum memory reserved for this model.",
+            "format": "int32"
+          },
+          "replicas": {
+            "type": "integer",
+            "description": "Number of pods in parallel.",
+            "format": "int32"
+          },
+          "publicAccess": {
+            "type": "boolean",
+            "description": "Whether the service has an accessible url publicly."
+          },
+          "urlPrefix": {
+            "type": "string",
+            "description": "Prefix of the public url.\r\nIt has to be unique inside the workspace.",
+            "nullable": true
+          },
+          "validateConnection": {
+            "type": "boolean",
+            "description": "Whether the Deploy process should validate the connection of the Library item.\r\nSpecific logic needed in the Code of the Library item to allow the UI to validate the connection."
+          },
+          "network": {
+            "$ref": "#/components/schemas/LibraryItemDeployNetwork"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines the Instant Deploy settings for the Library item."
+      },
+      "ApplicationErrorStatus": {
+        "enum": [
+          "YamlFormat",
+          "Other"
+        ],
+        "type": "string",
+        "description": "The reason the application is in a error status."
+      },
+      "DeploymentNetwork": {
+        "type": "object",
+        "properties": {
+          "serviceName": {
+            "type": "string",
+            "description": "Service Name",
+            "nullable": true
+          },
+          "ports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PortMapping"
+            },
+            "description": "Ports to map",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Network"
+      },
+      "LibraryFileContentRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "The id of the workspace to use to replace placeholder values",
+            "nullable": true
+          },
+          "filePath": {
+            "type": "string",
+            "description": "The path to the file",
+            "nullable": true
+          },
+          "placeholderReplacements": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Additional placeholder replacement key value pairs",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes request details for retreiving a file content of a Library item"
+      },
+      "LibraryItemDetails": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "description": "The globally unique identifier of the library item",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the library item",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "description": "The project's language",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The tags of the library item",
+            "nullable": true
+          },
+          "isHighlighted": {
+            "type": "boolean",
+            "description": "True if this item needs to be highlighted"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "description": "The order of this item if displayed on a list",
+            "format": "int32",
+            "nullable": true
+          },
+          "shortDescription": {
+            "type": "string",
+            "description": "The short description of the library item",
+            "nullable": true
+          },
+          "longDescription": {
+            "type": "string",
+            "description": "The long description of the library item",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "description": "Url of the library item in the public repository",
+            "nullable": true
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The file paths of the library item",
+            "nullable": true
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationVariable"
+            },
+            "description": "Defines the variables of the project",
+            "nullable": true
+          },
+          "entryPoint": {
+            "type": "string",
+            "description": "The project's entry point for this version",
+            "nullable": true
+          },
+          "runEntryPoint": {
+            "type": "string",
+            "description": "The Run entry point (main code file to run)",
+            "nullable": true
+          },
+          "defaultFile": {
+            "type": "string",
+            "description": "Defines the default file to show when loading the project in a Code Explorer",
+            "nullable": true
+          },
+          "sampleTemplate": {
+            "type": "boolean",
+            "description": "Whether the item is a Sample Template without ability to Save as Project or Explore the files (for HTTP samples or similar templates using Placeholders)"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The time the library item was Created at",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The time the library item was last updated at",
+            "format": "date-time"
+          },
+          "iconFile": {
+            "type": "string",
+            "description": "Defines an icon file to show in the Library item card. Optional.",
+            "nullable": true
+          },
+          "deployReady": {
+            "type": "boolean",
+            "description": "Whether the library item has an Image built and Ready to use with the Instant Deploy feature"
+          },
+          "deployable": {
+            "type": "boolean",
+            "description": "Whether the library item is deployable with the Instant Deploy feature"
+          },
+          "deploySettings": {
+            "$ref": "#/components/schemas/LibraryItemDeploySettings"
+          },
+          "isConnector": {
+            "type": "boolean",
+            "description": "Indicates whether the library item is a connector"
+          },
+          "isAuxiliaryService": {
+            "type": "boolean",
+            "description": "Indicates whether the library item is an auxiliary service"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Model used for extended library item information"
+      },
+      "ApplicationVariable": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the variable",
+            "nullable": true
+          },
+          "inputType": {
+            "$ref": "#/components/schemas/VariableInputType"
+          },
+          "multiline": {
+            "type": "boolean",
+            "description": "True if block is multiline",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the variable",
+            "nullable": true
+          },
+          "defaultValue": {
+            "type": "string",
+            "description": "Default value of the variable",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the variable is mandatory in order to Run / Deploy the project"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a variable of an application"
+      },
+      "LibraryConfiguration": {
+        "type": "object",
+        "properties": {
+          "gitUrl": {
+            "type": "string",
+            "description": "Git Url to the repository to be used as a backend monorepo",
+            "nullable": true
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch to be used as the main approved version code of the library items",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Deployment": {
+        "type": "object",
+        "properties": {
+          "deploymentId": {
+            "type": "string",
+            "description": "The unique identifier of the deployment",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "User defined deployment name.",
+            "nullable": true
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "Parent workspace ID.",
+            "nullable": true
+          },
+          "replicas": {
+            "type": "integer",
+            "description": "Number of pods in parallel.",
+            "format": "int32"
+          },
+          "cpuMillicores": {
+            "type": "integer",
+            "description": "Maximum CPU millicores reserved for this model.",
+            "format": "int32"
+          },
+          "memoryInMb": {
+            "type": "integer",
+            "description": "Maximum memory reserved for this model.",
+            "format": "int32"
+          },
+          "publicAccess": {
+            "type": "boolean",
+            "description": "Whether the service has an accessible url publicly."
+          },
+          "urlPrefix": {
+            "type": "string",
+            "description": "Prefix of the public url.\r\nIt has to be unique inside the workspace.",
+            "nullable": true
+          },
+          "stateEnabled": {
+            "type": "boolean",
+            "description": "Whether the service has state feature enabled."
+          },
+          "stateSize": {
+            "type": "integer",
+            "description": "State size in GB",
+            "format": "int32"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeploymentStatus"
+          },
+          "statusReason": {
+            "type": "string",
+            "description": "Brief reason about the Status of the deployment",
+            "nullable": true
+          },
+          "restartCount": {
+            "type": "integer",
+            "description": "The number of times the deployment has been restarted",
+            "format": "int32"
+          },
+          "timeOfDeployment": {
+            "type": "string",
+            "description": "Time when pod was successfully deployed to K8.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "Time at which the deployment was last (re-)started",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deploymentType": {
+            "$ref": "#/components/schemas/DeploymentType"
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DeploymentVariable"
+            },
+            "description": "Variables for this deployment.",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Time the deployment was created at",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Time the deployment was updated at",
+            "format": "date-time"
+          },
+          "gitReference": {
+            "type": "string",
+            "description": "Git reference (commit or tag).",
+            "nullable": true
+          },
+          "gitReferenceType": {
+            "$ref": "#/components/schemas/DeploymentGitReferenceType"
+          },
+          "buildId": {
+            "type": "string",
+            "description": "The id of the build last used for the deployment. Null if never deployed before.",
+            "nullable": true
+          },
+          "updateStatus": {
+            "$ref": "#/components/schemas/DeploymentUpdateStatus"
+          },
+          "updateBuildId": {
+            "type": "string",
+            "description": "The build id for the Update process. Can be null.",
+            "nullable": true
+          },
+          "libraryItemId": {
+            "type": "string",
+            "description": "The library item id the deployment was created from. This can be null, if it was not created from a library item.",
+            "nullable": true
+          },
+          "libraryItemCommitReference": {
+            "type": "string",
+            "description": "The library item's last change commit the deployment was created from. This can be null, if it was not created from a library item.\r\nOnly useful with Quix.Portal.Api.Contract.Deployment.LibraryItemId",
+            "nullable": true
+          },
+          "applicationId": {
+            "type": "string",
+            "description": "The id of the application the deployment is for",
+            "nullable": true
+          },
+          "applicationName": {
+            "type": "string",
+            "description": "The name of the application the deployment belongs to",
+            "nullable": true
+          },
+          "usingLibraryItemBuild": {
+            "type": "boolean",
+            "description": "Flag indicating that this is a deployment created from a library item build and saved as application, too,\r\nbut as the application was not modified, it is using the same build than the library item."
+          },
+          "useLatest": {
+            "type": "boolean",
+            "description": "If set to true the platform will use latest version for the deployment"
+          },
+          "latestVersion": {
+            "type": "string",
+            "description": "Latest version when KeepLatestVersion is set to true",
+            "nullable": true
+          },
+          "latestOutOfSync": {
+            "type": "boolean",
+            "description": "True if latest version is out of sync with the current deployment",
+            "readOnly": true
+          },
+          "applicationIsMissing": {
+            "type": "boolean",
+            "description": "True if application is missing in the latest"
+          },
+          "imageUri": {
+            "type": "string",
+            "description": "Used when deploying directly an image",
+            "nullable": true
+          },
+          "network": {
+            "$ref": "#/components/schemas/DeploymentNetwork"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/ResourceUserAuditInfo"
+          },
+          "updatedBy": {
+            "$ref": "#/components/schemas/ResourceUserAuditInfo"
+          },
+          "scratchpadInfo": {
+            "$ref": "#/components/schemas/ScratchpadDeploymentInfo"
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Deployment exists only in the database (not provisioned).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represent one deployed service or a job in Quix compute environment."
+      },
+      "LibraryZipContentRequest": {
+        "type": "object",
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "description": "The id of the workspace to use to replace placeholder values",
+            "nullable": true
+          },
+          "placeholderReplacements": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Additional placeholder replacement key value pairs",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Describes request details for retreiving a Zip file of the Library item"
+      }
+    }
+  }
+}
